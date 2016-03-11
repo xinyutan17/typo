@@ -8,15 +8,11 @@ Feature: Create Category
     And I am logged into the admin panel
 
   Scenario: Successfully create category
-    # Given I am on the admin_dashboard page
-    # And I follow "Categories"
     Given I am on the admin_categories page
-    When I fill in "Name" with "Foobar"
-    And I fill in "Keywords" with "Lorem Ipsum"
-    And I fill in "Description" with "Lorem Ipsum category"
+    When I fill in "Name" with "Hiking"
+    And I fill in "Keywords" with "Hike, Hiking, Mountains"
+    And I fill in "Description" with "For all things related to hiking."
     And I press "Save"
-    Then I should be on the admin content page
-    When I go to the home page
-    Then I should see "Foobar"
-    When I follow "Foobar"
-    Then I should see "Lorem Ipsum"
+    Then I should see "Hiking"
+    And I fill in "Keywords" with "Hike, Hiking, Mountains"
+    And I fill in "Description" with "For all things related to hiking."
