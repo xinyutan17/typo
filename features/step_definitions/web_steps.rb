@@ -55,6 +55,16 @@ And /^I am logged into the admin panel$/ do
   end
 end
 
+Given /the following articles exist/ do |articles|
+  articles.hashes.each do |article|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    article = Article.create(article)
+    article.comments.add(article[:title] + " really cool")
+    article.save!
+  end
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

@@ -112,6 +112,22 @@ class Admin::ContentController < Admin::BaseController
     end
     render :text => nil
   end
+  
+  def merge_with
+    @article = Article.find_by_id(params[:id])
+    other_article = Article.find_by_id(params[:merge_with])
+    if (@article && other_article && @article != other_article)
+      @article.merge_with(other_article)
+      flash[:notice] = "Merged with " + other_article.title
+    elsif (!@article)
+      flash[:notice] = "Error: you need an article to merge from."
+    elsif (!other_article)
+      flash[:notice] = "Error: article " + params[:merge_with] + " does not exist."
+    else
+      flash[:notice] = "Error: you cannot merge an article with itself."
+    end
+    redirect_to admin_content_path
+  end
 
   protected
 
